@@ -49,7 +49,7 @@ const addTodo = (text) => {
 };
 
 // Eventos
-todoForm.addEventListener('submit', (e) => {
+todoForm.addEventListener("submit", (e) => {
     e.preventDefault(); //prevents the page from reloading automatically after submit. 
 
     const inputValue = todoInput.value.trim(); //guarda o valor do input do usuário. trim removes unwanted space.
