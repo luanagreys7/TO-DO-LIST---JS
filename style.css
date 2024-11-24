@@ -1,0 +1,51 @@
+.container{
+    align-content: center;
+    margin-top: 0%;
+    margin-bottom: 80%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.addtask{
+    background-color: darkorange;
+    padding: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 0px;
+    border: 0;
+    margin-left: 5px;
+}
+li{
+    border-style: solid;
+    border-top: 0;
+    border-bottom: 0;
+    border-width: 1px;
+    display:flex;
+    border-color:lightgray;
+    padding-left: 30px;
+    padding: 10px;
+}
+li:first-child{
+    border-top: 1px;
+}
+li:last-child{
+    border-bottom: 1px;
+}
+li:nth-child(odd){
+    background-color:lightgray;
+}
+li:nth-child(even){
+    background-color:whitesmoke;
+}
+#newtask{
+    padding-right: 345px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-width: 2px;
+    border-color:black;
+}
+.esquerda{
+    padding-left: 40px;
+}
+label{
+    padding-left: 2px;
+}
