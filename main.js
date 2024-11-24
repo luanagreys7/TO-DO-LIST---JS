@@ -46,7 +46,6 @@ const addTodo = (text) => {
 
     todoList.appendChild(todo);
 
-    todoInput.value = "";
 };
 
 // Eventos
