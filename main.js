@@ -43,6 +43,13 @@ const saveTodo = (text) => { //add task
     todoList.appendChild(todo);
 };
 
+const toggleForms = () => {
+    editForm.classList.toggle("hide")
+    todoForm.classList.toggle("hide")
+    todoList.classList.toggle("hide")
+}
+
+
 // Eventos
 todoForm.addEventListener("submit", (e) => {
     e.preventDefault(); // Impede o atualização automática da página
@@ -55,3 +62,20 @@ todoForm.addEventListener("submit", (e) => {
         console.log("Por favor, insira um texto válido."); // Mensagem de depuração
     }
 });
+
+document.addEventListener("click", (e) => {
+
+    const targetEl = e.target
+    const parentEl = targetEl.closest("div")
+
+    if(targetEl.classList.contains("finish-todo")){
+        parentEl.classList.toggle("done");
+    }
+
+    if(targetEl.classList.contains("edit-todo")){
+        toggleForms()
+    }
+
+
+
+})
