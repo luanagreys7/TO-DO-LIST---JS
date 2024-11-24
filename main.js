@@ -17,31 +17,31 @@ const addTodo = (text) => {
     todo.appendChild(todoTitle)
 
     //Finish
-    const_doneBtn = document.createElement("button");
+    const doneBtn = document.createElement("button");
     doneBtn.classList.add("finish-todo");
     doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
     todo.appendChild(doneBtn);
     //Finish
 
     //Editar
-    const_doneBtn = document.createElement("button");
-    doneBtn.classList.add("edit-todo");
-    doneBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
-    todo.appendChild(doneBtn);
+    const editBtn = document.createElement("button");
+    editBtn.classList.add("edit-todo");
+    editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
+    todo.appendChild(editBtn);
     //Editar
 
     //Remover
-    const_doneBtn = document.createElement("button");
-    doneBtn.classList.add("remove-todo");
-    doneBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    todo.appendChild(doneBtn);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("remove-todo");
+    deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    todo.appendChild(deleteBtn);
     //Remover
 
     //Ver descrição
-    const_doneBtn = document.createElement("button");
-    doneBtn.classList.add("see-description");
-    doneBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
-    todo.appendChild(doneBtn);
+    const seedesBtn = document.createElement("button");
+    seedesBtn.classList.add("see-description");
+    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    todo.appendChild(seedesBtn);
     //Ver descrição
 
     todoList.appendChild(todo);
