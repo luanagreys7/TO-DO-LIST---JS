@@ -49,3 +49,11 @@ li:nth-child(even){
 label{
     padding-left: 2px;
 }
+
+#banner {
+    width: 1503px;
+    height: 150px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+    background-image: url(/imagens/seja_bem_vindo.png);
+}
