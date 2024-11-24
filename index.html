@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Scaling--> 
     <link rel="stylesheet" href="style.css"> <!--CSS-->
-    <link rel="shortcut icon" type="imagex/png" href="./imagens/icon.folha.ico"> <!--Icon da pagina-->
+    <link rel="shortcut icon" type="image/x-icon" href="./imagens/icon.folha.ico"> <!--Icon da pagina-->
     <script src="main.js" defer></script> <!--JS. Defer: arquivos carregam depois do html evitando erros-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>To Do List</title>
-    <div id="banner"></div>
 </head>
 <body>
+    <div id="banner"></div>
     <!--incio container-->
     <div class="container">
 
@@ -50,10 +50,11 @@
             <h2>Adicionar tarefa</h2>
             <div class="esquerda">
                 <input type="text" name="newtask" id="newtask" placeholder="Título"> <!--campo para inserir título-->
-                <input type="date" id="date" placeholder="Prazo"> <!--calendário-->
+                <label for="date">Prazo:</label>
+                <input type="date" id="date"> <!--calendário-->
                 <input type="text" id="description" placeholder="Descrição"> <!--descrição-->
                 <button class="addtask" type="submit">
-                    <i class="fa-thin fa-plus"></i>
+                    <i class="fa-solid fa-plus"></i>
                 </button>
                 <br>
             </div>
@@ -72,7 +73,8 @@
                 </button>
             </div>
             <!--Botão para cancelar-->
-            <button id="cancel-edit-btn">Cancelar</button>
+            <button id="cancel-edit-btn" type="button">Cancelar</button>
+
         </form>
         <!--FIM EDIT TAREFA-->
 
