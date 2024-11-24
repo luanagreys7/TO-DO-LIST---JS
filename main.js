@@ -9,12 +9,12 @@ const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 // Funções
 const addTodo = (text) => {
 
-    const todo = document.createElement("div")
-    todo.classList.add("todo")
+    const todo = document.createElement("div");
+    todo.classList.add("todo");
 
-    const todoTitle = document.createElement("h3")
-    todoTitle.innerText = text
-    todo.appendChild(todoTitle)
+    const todoTitle = document.createElement("h3");
+    todoTitle.innerText = text;
+    todo.appendChild(todoTitle);
 
     //Finish
     const doneBtn = document.createElement("button");
@@ -49,11 +49,13 @@ const addTodo = (text) => {
 };
 
 // Eventos
-todoForm.addEventListener('submit', function(e){
+todoForm.addEventListener('submit', (e) => {
     e.preventDefault(); //prevents the page from reloading automatically after submit. 
+
     const inputValue = todoInput.value.trim(); //guarda o valor do input do usuário. trim removes unwanted space.
-    if(inputValue.length > 0){
-        addTodo(inputValue)
+
+    if(inputValue){
+        addTodo(inputValue);
     }
    
 
