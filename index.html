@@ -10,9 +10,12 @@
 </head>
 <body>
     <h1>Bem-vindo(a)</h1>
+    <!--incio container-->
     <div class="container">
-        <!--INICIO Toolbar-->
+
+        <!--INICIO Toolbar (FILTRO E SEARCH)-->
         <div id="toolbar">
+
             <!--INICIO Search-->
             <div id="search">
                 <form>
@@ -23,6 +26,8 @@
                 </form>
             </div>
             <!--FIM Search-->
+
+            <!--INICIO FILTRO-->
             <div id="filter">
                 <h4>Filtrar por...</h4>
                 <select id="filter-select">
@@ -31,10 +36,15 @@
                     <option value="to-do">Não feitas</option>
                 </select>
             </div>
+            <!--FIM FILTRO-->
+
         </div>
-        <!--FIM Toolbar-->
+        <!--FIM Toolbar(FILTRO E SEARCH)-->
+
         <br>
         <br>
+
+        <!--INICIO ADD TAREFA-->
         <form action="ToDoList.html">
             <h2>Adicionar tarefa</h2>
             <div class="esquerda">
@@ -45,16 +55,25 @@
                 <br>
             </div>
         </form>
+        <!--FIM ADD TAREFA-->
+
+        <!--INICIO EDIT TAREFA-->
         <form id="edit-form">
             <p>Edite a sua tarefa</p>
             <div class="form-control">
+                <!--Campo input para editar tarefas-->
                 <input type="text" id="edit-input">
+                <!--Botão para confimar edição-->
                 <button type="submit">
                     <i.fa-solid.fa-check-double></i>
                 </button>
             </div>
+            <!--Botão para cancelar-->
             <button id="cancel-edit-btn">Cancelar</button>
         </form>
+        <!--FIM EDIT TAREFA-->
+
+        <!--Lista de Tarefas-->
         <div id="todo-list">
             <div class="todo">
                 <h3>task1</h3> <p>xx/xx/xxx</p>
@@ -88,5 +107,6 @@
             </div>
         </div>
     </div>
+    <!--fim container-->
 </body>
 </html>
