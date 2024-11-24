@@ -1,3 +1,4 @@
+alert("teste")
 // Seleção de elementos
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#newtask");
@@ -9,3 +10,4 @@ const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 // Funções
 
 // Eventos
+todoForm.addEventListener()
