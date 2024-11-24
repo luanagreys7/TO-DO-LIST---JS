@@ -7,8 +7,8 @@ const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 
 // Funções
-const addTodo = (text) => {
 
+const saveTodo = (text) => { //add task
     const todo = document.createElement("div");
     todo.classList.add("todo");
 
@@ -21,42 +21,37 @@ const addTodo = (text) => {
     doneBtn.classList.add("finish-todo");
     doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
     todo.appendChild(doneBtn);
-    //Finish
 
     //Editar
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-todo");
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     todo.appendChild(editBtn);
-    //Editar
 
     //Remover
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("remove-todo");
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
-    //Remover
 
     //Ver descrição
     const seedesBtn = document.createElement("button");
     seedesBtn.classList.add("see-description");
     seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
     todo.appendChild(seedesBtn);
-    //Ver descrição
 
     todoList.appendChild(todo);
-
 };
 
 // Eventos
 todoForm.addEventListener("submit", (e) => {
-    e.preventDefault(); //prevents the page from reloading automatically after submit. 
+    e.preventDefault(); // Impede o atualização automática da página
 
-    const inputValue = todoInput.value.trim(); //guarda o valor do input do usuário. trim removes unwanted space.
-
-    if(inputValue){
-        addTodo(inputValue);
+    const inputValue = todoInput.value.trim(); // Remove espaços no início e no fim do texto
+    if (inputValue.length > 0) {
+        saveTodo(inputValue); // Adiciona a tarefa
+        todoInput.value = ""; // Limpa o campo de entrada após salvar
+    } else {
+        console.log("Por favor, insira um texto válido."); // Mensagem de depuração
     }
-   
-
 });
