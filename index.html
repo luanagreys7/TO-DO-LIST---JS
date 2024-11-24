@@ -45,15 +45,15 @@
         <br>
 
         <!--INICIO ADD TAREFA-->
-        <form action="index.html">
+        <form id="todo-form">
             <h2>Adicionar tarefa</h2>
             <div class="esquerda">
                 <input type="text" name="newtask" id="newtask" placeholder="Título"> <!--campo para inserir título-->
+                <input type="date" id="date" placeholder="Prazo"> <!--calendário-->
+                <input type="text" id="description" placeholder="Descrição"> <!--descrição-->
                 <button class="addtask" type="submit">
                     <i class="fa-thin fa-plus"></i>
                 </button>
-                <input type="date" id="date" placeholder="Prazo"> <!--calendário-->
-                <input type="text" id="description" placeholder="Descrição"> <!--descrição-->
                 <br>
             </div>
         </form>
