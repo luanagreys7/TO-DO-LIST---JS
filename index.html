@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Scaling--> 
     <link rel="stylesheet" href="style.css"> <!--CSS-->
-    <link rel="main" href="To DO list\main.js"> <!--JS-->
+    <script src="main.js" defer></script> <!--JS--> <!--Defer: arquivos carregam depois do html evitando erros-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>To Do List</title>
 </head>
@@ -73,40 +73,75 @@
         </form>
         <!--FIM EDIT TAREFA-->
 
-        <!--Lista de Tarefas-->
+        <!--INICIO Lista de Tarefas-->
         <div id="todo-list">
+
+            <!--INICIO Exemplo 1-->
             <div class="todo">
                 <h3>task1</h3> <p>xx/xx/xxx</p>
-                <button class="see-description">
+
+                <!--ver descrição-->
+                <button class="see-description"> 
                     <i class="fa-regular fa-eye"></i>
                 </button>
+                <!--ver descrição-->
+
+                <!--Finish-->
                 <button class="finish-todo">
                     <i class="fa-solid fa-check"></i>
                 </button>
+                <!--Finish-->
+
+                <!--editar-->
                 <button class="edit-todo">
                     <i class="fa-solid fa-pen"></i>
                 </button>
+                <!--editar-->
+
+                <!--remover-->
                 <button class="remove-todo">
                     <i class="fa-solid fa-trash"></i>
                 </button>
+                <!--remover-->
+
             </div>
+            <!--FIM Exemplo 1-->
+
+            <!--INICIO Exemplo 2-->
             <div class="todo">
                 <h3>task2</h3> <p>xx/xx/xxx</p>
+
+                <!--ver descrição-->
                 <button class="see-description">
                     <i class="fa-regular fa-eye"></i>
                 </button>
+                <!--ver descrição-->
+
+                <!--Finish-->
                 <button class="finish-todo">
                     <i class="fa-solid fa-check"></i>
                 </button>
+                <!--Finish-->
+
+                <!--editar-->
                 <button class="edit-todo">
                     <i class="fa-solid fa-pen"></i>
                 </button>
+                <!--editar-->
+
+                <!--remover-->
                 <button class="remove-todo">
                     <i class="fa-solid fa-trash"></i>
                 </button>
+                <!--remover-->
+
             </div>
+            <!--FIM Exemplo 2-->
+
         </div>
+        <!--FIM Lista de Tarefas-->
+
     </div>
-    <!--fim container-->
+    <!--FIM container-->
 </body>
 </html>
