@@ -1,5 +1,3 @@
-alert("teste")
-
 // Seleção de elementos
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#newtask");
@@ -7,10 +5,10 @@ const todoList = document.querySelector("#todo-list");
 const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
+const taskDateInput = document.querySelector("#date")
 
-// Funções
-
-const saveTodo = (text) => { //add task
+// Adicionar uma nova tarefa
+const saveTodo = (text, deadline) => {
     const todo = document.createElement("div");
     todo.classList.add("todo");
 
@@ -18,66 +16,107 @@ const saveTodo = (text) => { //add task
     todoTitle.innerText = text;
     todo.appendChild(todoTitle);
 
-    //Ver descrição
-    const seedesBtn = document.createElement("button");
-    seedesBtn.classList.add("see-description");
-    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
-    todo.appendChild(seedesBtn);
+    // Mostrar o prazo da tarefa
+    const todoDeadline = document.createElement("p");
+    todoDeadline.innerText = `Prazo: ${deadline}`;
+    todo.appendChild(todoDeadline);
 
-    //Finish
+    // Botão de "concluir"
     const doneBtn = document.createElement("button");
     doneBtn.classList.add("finish-todo");
     doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
     todo.appendChild(doneBtn);
 
-    //Editar
+    // Botão de "editar"
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-todo");
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     todo.appendChild(editBtn);
 
-    //Remover
+    // Botão de "excluir"
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("remove-todo");
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
 
+    // Botão de ver descrição
+    const seedesBtn = document.createElement("button");
+    seedesBtn.classList.add("see-description");
+    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    todo.appendChild(seedesBtn);
+
+    // Verificar o prazo da tarefa
+    checkDeadline(deadline, todo);
+
+    // Adicionar a tarefa à lista
     todoList.appendChild(todo);
 };
 
-const toggleForms = () => {
-    editForm.classList.toggle("hide")
-    todoForm.classList.toggle("hide")
-    todoList.classList.toggle("hide")
-}
+// Verificar o prazo da tarefa
+const checkDeadline = (deadline, todoElement) => {
+    const today = new Date();
+    const taskDeadline = new Date(deadline);
 
+    const daysDifference = (taskDeadline - today) / (1000 * 60 * 60 * 24);
+    
+    const deadlineInfo = todoElement.querySelector("p");
+    if (daysDifference > 0) {
+        deadlineInfo.innerText = `Prazo: ${deadline} (Faltam ${Math.ceil(daysDifference)} dia(s))`;
+    } else if (daysDifference === 0) {
+        deadlineInfo.innerText = `Prazo: ${deadline} (Vence hoje!)`;
+    } else {
+        deadlineInfo.innerText = `Prazo: ${deadline} (Atrasada ${Math.abs(Math.floor(daysDifference))} dias)`;
+        todoElement.classList.add("overdue");
+    }
+};
+
+// Toggle entre os formulários de adicionar e editar tarefa
+const toggleForms = () => {
+    editForm.classList.toggle("hide");
+    todoForm.classList.toggle("hide");
+    todoList.classList.toggle("hide");
+};
 
 // Eventos
-todoForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // Impede o atualização automática da página
 
-    const inputValue = todoInput.value.trim(); // Remove espaços no início e no fim do texto
-    if (inputValue.length > 0) {
-        saveTodo(inputValue); // Adiciona a tarefa
-        todoInput.value = ""; // Limpa o campo de entrada após salvar
+// Adicionar tarefa
+todoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const inputValue = todoInput.value.trim();
+    const deadline = taskDateInput.value.trim();
+
+    if (inputValue.length > 0 && deadline.length > 0) {
+        saveTodo(inputValue, deadline);
+        todoInput.value = ""; // Limpar input
+        taskDateInput.value = ""; // Limpar data
     } else {
-        console.log("Por favor, insira um texto válido."); // Mensagem de depuração
+        alert("Por favor, insira uma tarefa e um prazo.");
     }
 });
 
+// Concluir tarefa
 document.addEventListener("click", (e) => {
+    const targetEl = e.target;
+    const parentEl = targetEl.closest("div");
 
-    const targetEl = e.target
-    const parentEl = targetEl.closest("div")
-
-    if(targetEl.classList.contains("finish-todo")){
+    // Marcar tarefa como concluída
+    if (targetEl.classList.contains("finish-todo")) {
         parentEl.classList.toggle("done");
     }
 
-    if(targetEl.classList.contains("edit-todo")){
-        toggleForms()
+    // Editar tarefa
+    if (targetEl.classList.contains("edit-todo")) {
+        toggleForms();
     }
 
+    // Excluir tarefa
+    if (targetEl.classList.contains("remove-todo")) {
+        parentEl.remove();
+    }
 
-
-})
+    // Ver descrição (opcional)
+    if (targetEl.classList.contains("see-description")) {
+        alert(`Descrição da tarefa: ${parentEl.querySelector("h3").innerText}`);
+    }
+});
