@@ -99,6 +99,7 @@ todoForm.addEventListener("submit", (e) => {
 document.addEventListener("click", (e) => {
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
+    let todoTitle;
 
     // Marcar tarefa como concluída
     if (targetEl.classList.contains("finish-todo")) {
