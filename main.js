@@ -1,3 +1,5 @@
+alert("teste")
+
 // Seleção de elementos
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#newtask");
