@@ -7,11 +7,7 @@ const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const taskDateInput = document.querySelector("#date");
 
-// Carregar as tarefas ao carregar a página
-loadTasks();
-let oldInputValue;
-
-//Funções
+// Funções
 
 // Adicionar uma nova tarefa
 const addTodo = (text, deadline) => {
@@ -59,36 +55,31 @@ const addTodo = (text, deadline) => {
 
     saveTasks(); 
 
-    todoInput.value = ""; //O campo de input é limpo
-    todoInput.focus(); //foco no campo de input
+    todoInput.value = ""; // O campo de input é limpo
+    taskDateInput.value = ""; // Limpar data
+    todoInput.focus(); // Foco no campo de input
 };
 
 // Função para salvar tarefas no localStorage
 function saveTasks() {
-    let tasks = []; // array com as todos
+    let tasks = []; // Array com as todos
     todoList.querySelectorAll('.todo').forEach((todo) => {
         const todoTitle = todo.querySelector('h3').innerText;
         const deadline = todo.querySelector('p').innerText.replace('Prazo: ', ''); // Remove a string "Prazo: "
         tasks.push({ text: todoTitle, deadline: deadline });
     });
 
+    // Salva as tarefas no localStorage
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Função para carregar tarefas do localStorage
 function loadTasks() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || []; // Verifica se há tarefas no localStorage e, se não, usa um array vazio
-    tasks.forEach(task => addTodo(task.text, task.deadline));
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || []; // Verifica se há tarefas no localStorage
+    tasks.forEach(task => addTodo(task.text, task.deadline)); // Adiciona as tarefas carregadas
 }
 
-// Toggle entre os formulários de adicionar e editar tarefa
-const toggleForms = () => {
-    editForm.classList.toggle("hide");
-    todoForm.classList.toggle("hide");
-    todoList.classList.toggle("hide");
-};
-
-// Função para atualizar título da todo (edit)
+// Função para atualizar título da todo (editar)
 const updateTodo = (text) => {
     const todos = document.querySelectorAll(".todo");
     todos.forEach((todo) => {
@@ -184,3 +175,6 @@ editForm.addEventListener("submit", (e) => {
 
     toggleForms();
 });
+
+// Carregar as tarefas assim que a página carregar
+loadTasks();
