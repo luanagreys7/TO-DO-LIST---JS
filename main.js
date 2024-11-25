@@ -78,7 +78,7 @@ function loadTasks(){
 
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];   // Verifica se há tarefas no localStorage e, se não, usar um array vazio
 
-    tasks.forEach(createTaskElement);
+    tasks.forEach(task => addTodo(task.text, task.deadline));
 
 }
 
@@ -101,6 +101,7 @@ const updateTodo = (text) => {
         if (todoTitle.innerText === oldInputValue) {
             todoTitle.innerText = text;
             oldInputValue = text;
+
         }
 
     });
