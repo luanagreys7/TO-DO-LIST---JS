@@ -7,12 +7,13 @@ const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const taskDateInput = document.querySelector("#date")
 
+loadTasks();
 let oldInputValue
 
 //Funções
 
 // Adicionar uma nova tarefa
-const saveTodo = (text, deadline) => {
+const addTodo = (text, deadline) => {
     const todo = document.createElement("div");
     todo.classList.add("todo");
 
@@ -55,9 +56,31 @@ const saveTodo = (text, deadline) => {
     // Adicionar a tarefa à lista
     todoList.appendChild(todo);
 
-    todoInput.value = " ";
-    todoInput.focus();
+    saveTasks(); 
+
+    todoInput.value = " "; //O campo de input é limpo
+    todoInput.focus(); //foco no campo de input
 };
+
+function saveTasks(){
+
+    let tasks = []; //array com as todos
+    todoList.querySelectorAll('.todo').forEach((todo) => {
+        const todoTitle = todo.querySelector('h3').innerText;
+        const deadline = todo.querySelector('p').innerText.replace('Prazo: ', ''); // Remove a string "Prazo: "
+        tasks.push({ text: todoTitle, deadline: deadline });
+    });
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasks(){
+
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];   // Verifica se há tarefas no localStorage e, se não, usar um array vazio
+
+    tasks.forEach(createTaskElement);
+
+}
 
 // Toggle entre os formulários de adicionar e editar tarefa
 const toggleForms = () => {
@@ -66,19 +89,22 @@ const toggleForms = () => {
     todoList.classList.toggle("hide");
 };
 
+// Função para atualizar título da todo (edit)
 const updateTodo = (text) => {
 
-    const todos = document.querySelectorAll(".todo")
+    const todos = document.querySelectorAll(".todo");
 
     todos.forEach((todo) => {
 
-        let todoTitle = todo.querySelector("h3")
+        let todoTitle = todo.querySelector("h3");
 
         if (todoTitle.innerText === oldInputValue) {
-            todoTitle.innerText = text
+            todoTitle.innerText = text;
+            oldInputValue = text;
         }
 
-    })
+    });
+    saveTasks();
 }
 
 // Verificar o prazo da tarefa
@@ -109,7 +135,7 @@ todoForm.addEventListener("submit", (e) => {
     const deadline = taskDateInput.value.trim();
 
     if (inputValue.length > 0 && deadline.length > 0) {
-        saveTodo(inputValue, deadline);
+        addTodo(inputValue, deadline);
         todoInput.value = ""; // Limpar input
         taskDateInput.value = ""; // Limpar data
     } else {
@@ -143,6 +169,7 @@ document.addEventListener("click", (e) => {
     // Excluir tarefa
     if (targetEl.classList.contains("remove-todo")) {
         parentEl.remove();
+        saveTasks();
     }
 
     // Ver descrição (opcional)
