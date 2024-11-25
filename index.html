@@ -21,23 +21,25 @@
             <div id="search">
                 <form>
                     <input type="text" id="search-input" placeholder="Pesquisar...">
-                    <button id="erase-button" class="red">
-                        <i class="fa-solid fa-delete-left"></i>
-                    </button>
                 </form>
             </div>
             <!--FIM Search-->
-
             <!--INICIO FILTRO-->
             <div id="filter">
-                <h4 class="text">Filtrar por...</h4>
                 <select id="filter-select">
-                    <option value="all">Todas</option>
+                    <option value="all">Filtrar por...</option>
+                    <!--<option value="all">Todas</option>-->
                     <option value="done">Concluídas</option>
                     <option value="to-do">Não feitas</option>
                 </select>
             </div>
             <!--FIM FILTRO-->
+            <form>
+                <button id="erase-button" class="red">
+                    <i class="fa-solid fa-delete-left"></i>
+                </button>
+            </form>
+            
 
         </div>
         <!--FIM Toolbar(FILTRO E SEARCH)-->
