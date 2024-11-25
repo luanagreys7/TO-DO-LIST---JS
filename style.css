@@ -137,3 +137,15 @@ button{
 .remove-todo:hover{
     background-color: red;
 }
+.d-check{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+}
+.d-check:hover{
+    background-color: rgb(76, 135, 76) ;
+}
