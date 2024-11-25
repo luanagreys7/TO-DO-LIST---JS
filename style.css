@@ -65,3 +65,8 @@ label{
     width: 675px;
     align-content: center;
 }
+.text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font: bold;
+    color: rgb(52, 23, 11);
+}
