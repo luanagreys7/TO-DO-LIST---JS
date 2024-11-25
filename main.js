@@ -55,9 +55,6 @@ function addTodoTask(id, title, description, date, completed = false) {
     if (completed) todoDiv.classList.add('done');
     todoDiv.setAttribute('data-id', id);
 
-    const countdownSpan = document.createElement('span');
-    countdownSpan.className = 'countdown';
-
     todoDiv.innerHTML = `
         <h3>${title}</h3>
         <p>${formatDate(date)} - <span class="countdown"></span></p>
@@ -76,7 +73,7 @@ function addTodoTask(id, title, description, date, completed = false) {
         </button>
     `;
 
-    // Adicionando eventos aos botões
+    // Eventos dos botões
     todoDiv.querySelector('.see-description').addEventListener('click', () => {
         alert(description);
     });
@@ -117,41 +114,33 @@ function saveTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Função para carregar as tarefas do localStorage
+// Função para carregar tarefas do localStorage
 function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(task => addTodoTask(task.id, task.title, task.description, task.date, task.completed));
 }
 
-// Função para filtrar tarefas
-function filterTodos() {
+// Função para aplicar filtro e pesquisa
+function applySearchAndFilter() {
+    const searchTerm = searchInput.value.toLowerCase();
     const filterValue = filterSelect.value;
     const todos = document.querySelectorAll('.todo');
 
     todos.forEach(todo => {
+        const title = todo.querySelector('h3').textContent.toLowerCase();
         const isCompleted = todo.classList.contains('done');
-        if (filterValue === 'all') {
-            todo.style.display = 'block';
-        } else if (filterValue === 'done' && !isCompleted) {
-            todo.style.display = 'none';
-        } else if (filterValue === 'to-do' && isCompleted) {
-            todo.style.display = 'none';
-        }
+
+        const matchesSearch = title.includes(searchTerm);
+        const matchesFilter =
+            filterValue === 'all' ||
+            (filterValue === 'done' && isCompleted) ||
+            (filterValue === 'to-do' && !isCompleted);
+
+        todo.style.display = matchesSearch && matchesFilter ? 'block' : 'none';
     });
 }
 
-// Função para buscar tarefas
-searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value.toLowerCase();
-    const todos = document.querySelectorAll('.todo');
-
-    todos.forEach(todo => {
-        const title = todo.querySelector('h3').textContent.toLowerCase();
-        todo.style.display = title.includes(searchTerm) ? 'block' : 'none';
-    });
-});
-
-// Função para editar tarefas
+// Editar tarefas
 editForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const updatedTitle = editInput.value.trim();
@@ -201,8 +190,9 @@ todoForm.addEventListener('submit', (e) => {
     saveTasks();
 });
 
-// Filtrar tarefas ao selecionar
-filterSelect.addEventListener('change', filterTodos);
+// Eventos para filtro e pesquisa
+filterSelect.addEventListener('change', applySearchAndFilter);
+searchInput.addEventListener('input', applySearchAndFilter);
 
-// Carregar tarefas salvas ao iniciar
+// Carregar tarefas ao iniciar
 loadTasks();
