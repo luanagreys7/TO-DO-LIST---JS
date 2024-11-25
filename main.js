@@ -130,15 +130,21 @@ function applySearchAndFilter() {
         const title = todo.querySelector('h3').textContent.toLowerCase();
         const isCompleted = todo.classList.contains('done');
 
+        // Lógica do filtro e pesquisa
         const matchesSearch = title.includes(searchTerm);
         const matchesFilter =
             filterValue === 'all' ||
             (filterValue === 'done' && isCompleted) ||
             (filterValue === 'to-do' && !isCompleted);
 
+        // Atualiza exibição com base no filtro e pesquisa
         todo.style.display = matchesSearch && matchesFilter ? 'block' : 'none';
     });
 }
+
+// Eventos para filtro e pesquisa
+filterSelect.addEventListener('change', applySearchAndFilter);
+searchInput.addEventListener('input', applySearchAndFilter);
 
 // Editar tarefas
 editForm.addEventListener('submit', (e) => {
