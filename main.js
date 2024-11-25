@@ -78,9 +78,9 @@ const updateTodo = (newText) => {
             todoTitle.innerText = newText;
             oldInputValue = newText; // Atualiza o título antigo para o novo
 
-            saveTasks(); // Salva as tarefas novamente no localStorage
         }
     });
+    saveTasks(); // Salva as tarefas novamente no localStorage
 };
 
 // Função para excluir uma tarefa
@@ -130,6 +130,7 @@ document.addEventListener("click", (e) => {
     // Editar tarefa
     if (targetEl.classList.contains("edit-todo")) {
         toggleForms();
+        
         editInput.value = todoTitle;
         oldInputValue = todoTitle; // Armazena o título antigo
     }
