@@ -57,3 +57,11 @@ label{
     margin-bottom: 15px;
     background-image: url(/imagens/seja_bem_vindo.png);
 }
+#search-input{
+    border-radius: 18px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    padding: 10px;
+    width: 675px;
+    align-content: center;
+}
