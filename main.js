@@ -134,12 +134,12 @@ function loadTasks() {
 
 // Função para aplicar filtro e pesquisa
 function applySearchAndFilter() {
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase().trim();
     const filterValue = filterSelect.value;
     const todos = document.querySelectorAll('.todo');
 
     todos.forEach(todo => {
-        const title = todo.querySelector('h3').textContent.toLowerCase();
+        const title = todo.querySelector('h3').textContent.toLowerCase().trim();
         const isCompleted = todo.classList.contains('done');
 
         const matchesSearch = title.includes(searchTerm);
