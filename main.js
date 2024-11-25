@@ -2,25 +2,25 @@
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#newtask");
 const todoList = document.querySelector("#todo-list");
-const searchInput = document.getElementById('search-input');
-const filterSelect = document.getElementById('filter-select');
-const editForm = document.getElementById('edit-form');
-const editInput = document.getElementById('edit-input');
-const editDateInput = document.getElementById('edit-date-input');
-const editDescriptionInput = document.getElementById('edit-description-input');
-const cancelEditBtn = document.getElementById('cancel-edit-btn');
+const searchInput = document.getElementById("search-input");
+const filterSelect = document.getElementById("filter-select");
+const editForm = document.getElementById("edit-form");
+const editInput = document.getElementById("edit-input");
+const editDateInput = document.getElementById("edit-date-input");
+const editDescriptionInput = document.getElementById("edit-description-input");
+const cancelEditBtn = document.getElementById("cancel-edit-btn");
 const taskDateInput = document.querySelector("#date");
-const descriptionInput = document.getElementById('description');
+const descriptionInput = document.getElementById("description");
 
 let editTodoId = null;
 let countdownIntervals = {};
 
 // Função para formatar a data corretamente
 function formatDate(dateString) {
-    if (!dateString) return 'Data não definida';
+    if (!dateString) return "Data não definida";
     const date = new Date(dateString);
-    return `${date.getDate().toString().padStart(2, '0')}/${
-        (date.getMonth() + 1).toString().padStart(2, '0')
+    return `${date.getDate().toString().padStart(2, "0")}/${
+        (date.getMonth() + 1).toString().padStart(2, "0")
     }/${date.getFullYear()}`;
 }
 
@@ -58,11 +58,11 @@ function createCountdown(dateString, element, id) {
 
 // Função para adicionar uma nova tarefa
 function addTodoTask(id, title, description, date, completed = false) {
-    const todoDiv = document.createElement('div');
-    todoDiv.classList.add('todo');
-    if (completed) todoDiv.classList.add('done');
-    todoDiv.setAttribute('data-id', id);
-    todoDiv.setAttribute('data-date', date);
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo");
+    if (completed) todoDiv.classList.add("done");
+    todoDiv.setAttribute("data-id", id);
+    todoDiv.setAttribute("data-date", date);
 
     todoDiv.innerHTML = `
         <h3>${title}</h3>
@@ -83,77 +83,79 @@ function addTodoTask(id, title, description, date, completed = false) {
     `;
 
     // Eventos dos botões
-    todoDiv.querySelector('.see-description').addEventListener('click', () => {
-        const desc = todoDiv.querySelector('.description');
-        desc.style.display = desc.style.display === 'none' ? 'block' : 'none';
+    todoDiv.querySelector(".see-description").addEventListener("click", () => {
+        const desc = todoDiv.querySelector(".description");
+        desc.style.display = desc.style.display === "none" ? "block" : "none";
     });
 
-    todoDiv.querySelector('.finish-todo').addEventListener('click', () => {
-        todoDiv.classList.toggle('done');
+    todoDiv.querySelector(".finish-todo").addEventListener("click", () => {
+        todoDiv.classList.toggle("done");
         saveTasks();
+        applySearchAndFilter(); // Atualiza a exibição
     });
 
-    todoDiv.querySelector('.edit-todo').addEventListener('click', () => {
+    todoDiv.querySelector(".edit-todo").addEventListener("click", () => {
         editTodoId = id;
-        editForm.style.display = 'block';
+        editForm.style.display = "block";
         editInput.value = title;
         editDateInput.value = date;
         editDescriptionInput.value = description;
     });
 
-    todoDiv.querySelector('.remove-todo').addEventListener('click', () => {
+    todoDiv.querySelector(".remove-todo").addEventListener("click", () => {
         clearInterval(countdownIntervals[id]); // Limpa o intervalo
         delete countdownIntervals[id];
         todoDiv.remove();
         saveTasks();
+        applySearchAndFilter(); // Atualiza a exibição
     });
 
     todoList.appendChild(todoDiv);
-    createCountdown(date, todoDiv.querySelector('.countdown'), id);
+    createCountdown(date, todoDiv.querySelector(".countdown"), id);
 }
 
 // Função para salvar tarefas no localStorage
 function saveTasks() {
     const tasks = [];
-    todoList.querySelectorAll('.todo').forEach(todo => {
-        const id = todo.getAttribute('data-id');
-        const title = todo.querySelector('h3').textContent;
-        const date = todo.getAttribute('data-date');
-        const description = todo.querySelector('.description').textContent;
-        const completed = todo.classList.contains('done');
+    todoList.querySelectorAll(".todo").forEach((todo) => {
+        const id = todo.getAttribute("data-id");
+        const title = todo.querySelector("h3").textContent;
+        const date = todo.getAttribute("data-date");
+        const description = todo.querySelector(".description").textContent;
+        const completed = todo.classList.contains("done");
         tasks.push({ id, title, description, date, completed });
     });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // Função para carregar tarefas do localStorage
 function loadTasks() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => addTodoTask(task.id, task.title, task.description, task.date, task.completed));
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach((task) => addTodoTask(task.id, task.title, task.description, task.date, task.completed));
 }
 
 // Função para aplicar filtro e pesquisa
 function applySearchAndFilter() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     const filterValue = filterSelect.value;
-    const todos = document.querySelectorAll('.todo');
+    const todos = document.querySelectorAll(".todo");
 
-    todos.forEach(todo => {
-        const title = todo.querySelector('h3').textContent.toLowerCase().trim();
-        const isCompleted = todo.classList.contains('done');
+    todos.forEach((todo) => {
+        const title = todo.querySelector("h3").textContent.toLowerCase().trim();
+        const isCompleted = todo.classList.contains("done");
 
-        const matchesSearch = title.includes(searchTerm);
+        const matchesSearch = searchTerm === "" || title.includes(searchTerm);
         const matchesFilter =
-            filterValue === 'all' ||
-            (filterValue === 'done' && isCompleted) ||
-            (filterValue === 'to-do' && !isCompleted);
+            filterValue === "all" ||
+            (filterValue === "done" && isCompleted) ||
+            (filterValue === "to-do" && !isCompleted);
 
-        todo.style.display = matchesSearch && matchesFilter ? 'block' : 'none';
+        todo.style.display = matchesSearch && matchesFilter ? "block" : "none";
     });
 }
 
 // Editar tarefas
-editForm.addEventListener('submit', (e) => {
+editForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const updatedTitle = editInput.value.trim();
     const updatedDate = editDateInput.value.trim();
@@ -164,29 +166,30 @@ editForm.addEventListener('submit', (e) => {
         return;
     }
 
-    const todo = [...todoList.children].find(todo => todo.getAttribute('data-id') === editTodoId);
+    const todo = [...todoList.children].find((todo) => todo.getAttribute("data-id") === editTodoId);
 
     if (todo) {
-        todo.querySelector('h3').textContent = updatedTitle;
-        todo.querySelector('p').innerHTML = `${formatDate(updatedDate)} - <span class="countdown"></span>`;
-        todo.querySelector('.description').textContent = updatedDescription;
-        todo.setAttribute('data-date', updatedDate);
-        createCountdown(updatedDate, todo.querySelector('.countdown'), editTodoId);
+        todo.querySelector("h3").textContent = updatedTitle;
+        todo.querySelector("p").innerHTML = `${formatDate(updatedDate)} - <span class="countdown"></span>`;
+        todo.querySelector(".description").textContent = updatedDescription;
+        todo.setAttribute("data-date", updatedDate);
+        createCountdown(updatedDate, todo.querySelector(".countdown"), editTodoId);
     }
 
     editTodoId = null;
-    editForm.style.display = 'none';
+    editForm.style.display = "none";
     saveTasks();
+    applySearchAndFilter(); // Atualiza a exibição
 });
 
 // Cancelar edição
-cancelEditBtn.addEventListener('click', () => {
+cancelEditBtn.addEventListener("click", () => {
     editTodoId = null;
-    editForm.style.display = 'none';
+    editForm.style.display = "none";
 });
 
 // Adicionar nova tarefa
-todoForm.addEventListener('submit', (e) => {
+todoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = todoInput.value.trim();
     const date = taskDateInput.value.trim();
@@ -201,11 +204,12 @@ todoForm.addEventListener('submit', (e) => {
     addTodoTask(id, title, description, date);
     todoForm.reset();
     saveTasks();
+    applySearchAndFilter(); // Atualiza a exibição
 });
 
 // Eventos para filtro e pesquisa
-filterSelect.addEventListener('change', applySearchAndFilter);
-searchInput.addEventListener('input', applySearchAndFilter);
+filterSelect.addEventListener("change", applySearchAndFilter);
+searchInput.addEventListener("input", applySearchAndFilter);
 
 // Carregar tarefas ao iniciar
 loadTasks();
