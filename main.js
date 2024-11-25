@@ -67,7 +67,7 @@ function addTodoTask(id, title, description, date, completed = false) {
     todoDiv.innerHTML = `
         <h3>${title}</h3>
         <p>${formatDate(date)} - <span class="countdown"></span></p>
-        <p class="description">${description}</p>
+        <p class="description" style="display: none;">${description}</p>
         <button class="see-description">
             <i class="fa-regular fa-eye"></i>
         </button>
@@ -84,7 +84,8 @@ function addTodoTask(id, title, description, date, completed = false) {
 
     // Eventos dos botões
     todoDiv.querySelector('.see-description').addEventListener('click', () => {
-        alert(description);
+        const desc = todoDiv.querySelector('.description');
+        desc.style.display = desc.style.display === 'none' ? 'block' : 'none';
     });
 
     todoDiv.querySelector('.finish-todo').addEventListener('click', () => {
