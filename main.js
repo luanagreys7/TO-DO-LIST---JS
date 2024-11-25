@@ -169,11 +169,11 @@ todoForm.addEventListener('submit', (e) => {
     const date = taskDateInput.value.trim();
     const description = descriptionInput.value.trim();
 
-    if (title && date) {
+    if (title) {
         addTodoTask(title, description, date);
         todoForm.reset(); 
     } else {
-        alert('Por favor, preencha todos os campos obrigatórios (Título e Data).');
+        alert('Por favor, preencha todo o campo obrigatório (Título).');
     }
 });
 
