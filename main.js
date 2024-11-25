@@ -50,6 +50,16 @@ const saveTodo = (text, deadline) => {
 
     // Adicionar a tarefa à lista
     todoList.appendChild(todo);
+
+    todoInput.value = " ";
+    todoInput.focus();
+};
+
+// Toggle entre os formulários de adicionar e editar tarefa
+const toggleForms = () => {
+    editForm.classList.toggle("hide");
+    todoForm.classList.toggle("hide");
+    todoList.classList.toggle("hide");
 };
 
 // Verificar o prazo da tarefa
@@ -68,13 +78,6 @@ const checkDeadline = (deadline, todoElement) => {
         deadlineInfo.innerText = `Prazo: ${deadline} (Atrasada ${Math.abs(Math.floor(daysDifference))} dias)`;
         todoElement.classList.add("overdue");
     }
-};
-
-// Toggle entre os formulários de adicionar e editar tarefa
-const toggleForms = () => {
-    editForm.classList.toggle("hide");
-    todoForm.classList.toggle("hide");
-    todoList.classList.toggle("hide");
 };
 
 // Eventos
