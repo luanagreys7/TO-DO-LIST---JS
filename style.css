@@ -149,3 +149,8 @@ button{
 .d-check:hover{
     background-color: rgb(76, 135, 76) ;
 }
+h3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font: bold;
+    color: rgb(52, 23, 11);
+}
