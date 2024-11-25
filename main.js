@@ -64,3 +64,101 @@ const addTodo = (text, deadline) => {
 
 // Ao recarregar a página, as tarefas anteriores do localStorage são carregadas
 loadTasks();
+
+// Função para atualizar o título de uma tarefa (edit)
+const updateTodo = (newText) => {
+    // Encontra a tarefa a ser editada
+    const todos = document.querySelectorAll(".todo");
+
+    todos.forEach((todo) => {
+        let todoTitle = todo.querySelector("h3");
+
+        // Se o título da tarefa for igual ao antigo, atualiza
+        if (todoTitle.innerText === oldInputValue) {
+            todoTitle.innerText = newText;
+            oldInputValue = newText; // Atualiza o título antigo para o novo
+
+            saveTasks(); // Salva as tarefas novamente no localStorage
+        }
+    });
+};
+
+// Função para excluir uma tarefa
+const deleteTodo = (todoElement) => {
+    todoElement.remove(); // Remove o elemento da página
+    saveTasks(); // Atualiza o localStorage após a remoção
+};
+
+// Função para marcar a tarefa como concluída
+const toggleDone = (todoElement) => {
+    todoElement.classList.toggle("done");
+    saveTasks(); // Atualiza o localStorage após concluir
+};
+
+// Eventos
+
+// Adicionar tarefa
+todoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const inputValue = todoInput.value.trim();
+    const deadline = taskDateInput.value.trim();
+
+    if (inputValue.length > 0 && deadline.length > 0) {
+        addTodo(inputValue, deadline);
+    } else {
+        alert("Por favor, insira uma tarefa e um prazo.");
+    }
+});
+
+// Evento para lidar com as ações de concluir, editar, excluir e ver descrição
+document.addEventListener("click", (e) => {
+    const targetEl = e.target;
+    const parentEl = targetEl.closest(".todo"); // Obtém o elemento da tarefa clicada
+
+    let todoTitle;
+
+    if (parentEl && parentEl.querySelector("h3")) {
+        todoTitle = parentEl.querySelector("h3").innerText;
+    }
+
+    // Concluir tarefa
+    if (targetEl.classList.contains("finish-todo")) {
+        toggleDone(parentEl);
+    }
+
+    // Editar tarefa
+    if (targetEl.classList.contains("edit-todo")) {
+        toggleForms();
+        editInput.value = todoTitle;
+        oldInputValue = todoTitle; // Armazena o título antigo
+    }
+
+    // Excluir tarefa
+    if (targetEl.classList.contains("remove-todo")) {
+        deleteTodo(parentEl);
+    }
+
+    // Ver descrição
+    if (targetEl.classList.contains("see-description")) {
+        alert(`Descrição da tarefa: ${parentEl.querySelector("h3").innerText}`);
+    }
+});
+
+// Cancelar edição
+cancelEditBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleForms(); // Fecha o formulário de edição
+});
+
+// Enviar formulário de edição
+editForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const editInputValue = editInput.value.trim();
+
+    if (editInputValue) {
+        updateTodo(editInputValue); // Atualiza o título da tarefa
+    }
+
+    toggleForms(); // Fecha o formulário de edição
+});
