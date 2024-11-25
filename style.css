@@ -201,3 +201,6 @@ input#description {
     background-color: rgb(234, 228, 221);
     border: 2px solid transparent;
 }
+.fa-eye, .fa-trash, .fa-pen, .fa-check{
+    pointer-events: none;
+}
