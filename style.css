@@ -204,3 +204,11 @@ input#description {
 .fa-eye, .fa-trash, .fa-pen, .fa-check{
     pointer-events: none;
 }
+.done {
+    color: rgb(1, 188, 1);
+    font-style: italic;
+}
+#edit-input{
+    border-radius: 15px;
+    padding: 7px;
+}
