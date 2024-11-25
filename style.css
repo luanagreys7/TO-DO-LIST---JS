@@ -172,6 +172,7 @@ h3{
     cursor: pointer;
     padding: 10px;
     margin-right: 4px;
+    color: rgba(0, 0, 0, 0.5);
 }
 #toolbar{
     display: flex;
@@ -194,6 +195,7 @@ input#date {
     padding: 5px;
     background-color: rgb(234, 228, 221);
     border: 2px solid transparent;
+    color: rgba(0, 0, 0, 0.5);
 }
 input#description {
     border-radius: 7px;
