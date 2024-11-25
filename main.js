@@ -23,11 +23,6 @@ const saveTodo = (text, deadline) => {
     seedesBtn.classList.add("see-description");
     seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
     todo.appendChild(seedesBtn);
-    
-    // Mostrar o prazo da tarefa
-    const todoDeadline = document.createElement("p");
-    todoDeadline.innerText = `Prazo: ${deadline}`;
-    todo.appendChild(todoDeadline);
 
     // Botão de "concluir"
     const doneBtn = document.createElement("button");
@@ -46,6 +41,11 @@ const saveTodo = (text, deadline) => {
     deleteBtn.classList.add("remove-todo");
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
+
+    // Mostrar o prazo da tarefa
+    const todoDeadline = document.createElement("p");
+    todoDeadline.innerText = `Prazo: ${deadline}`;
+    todo.appendChild(todoDeadline);
 
     // Verificar o prazo da tarefa
     checkDeadline(deadline, todo);
