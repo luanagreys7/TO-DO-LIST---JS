@@ -7,9 +7,7 @@ const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const taskDateInput = document.querySelector("#date")
 
-// Funções
-
-// Função para adicionar nova tarefa
+// Adicionar uma nova tarefa
 const saveTodo = (text, deadline) => {
     const todo = document.createElement("div");
     todo.classList.add("todo");
@@ -18,11 +16,10 @@ const saveTodo = (text, deadline) => {
     todoTitle.innerText = text;
     todo.appendChild(todoTitle);
 
-    // Ver descrição
-    const seedesBtn = document.createElement("button");
-    seedesBtn.classList.add("see-description");
-    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
-    todo.appendChild(seedesBtn);
+    // Mostrar o prazo da tarefa
+    const todoDeadline = document.createElement("p");
+    todoDeadline.innerText = `Prazo: ${deadline}`;
+    todo.appendChild(todoDeadline);
 
     // Botão de "concluir"
     const doneBtn = document.createElement("button");
@@ -42,25 +39,18 @@ const saveTodo = (text, deadline) => {
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
 
-    // Adicionar a tarefa à lista
-    todoList.appendChild(todo);
-
-    // Mostrar o prazo da tarefa
-    const todoDeadline = document.createElement("p");
-    todoDeadline.innerText = `Prazo: ${deadline}`;
-    todo.appendChild(todoDeadline);
+    // Botão de ver descrição
+    const seedesBtn = document.createElement("button");
+    seedesBtn.classList.add("see-description");
+    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    todo.appendChild(seedesBtn);
 
     // Verificar o prazo da tarefa
     checkDeadline(deadline, todo);
 
+    // Adicionar a tarefa à lista
+    todoList.appendChild(todo);
 };
-
-//edit (em progresso)
-const toggleForms = () => {
-    editForm.classList.toggle("hide")
-    todoForm.classList.toggle("hide")
-    todoList.classList.toggle("hide")
-}
 
 // Verificar o prazo da tarefa
 const checkDeadline = (deadline, todoElement) => {
@@ -78,6 +68,13 @@ const checkDeadline = (deadline, todoElement) => {
         deadlineInfo.innerText = `Prazo: ${deadline} (Atrasada ${Math.abs(Math.floor(daysDifference))} dias)`;
         todoElement.classList.add("overdue");
     }
+};
+
+// Toggle entre os formulários de adicionar e editar tarefa
+const toggleForms = () => {
+    editForm.classList.toggle("hide");
+    todoForm.classList.toggle("hide");
+    todoList.classList.toggle("hide");
 };
 
 // Eventos
