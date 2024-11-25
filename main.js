@@ -21,45 +21,39 @@ const addTodo = (text, deadline) => {
     todoTitle.innerText = text;
     todo.appendChild(todoTitle);
 
-    // Mostrar o prazo da tarefa
     const todoDeadline = document.createElement("p");
     todoDeadline.innerText = `Prazo: ${deadline}`;
     todo.appendChild(todoDeadline);
 
-    // Botão de "concluir"
     const doneBtn = document.createElement("button");
     doneBtn.classList.add("finish-todo");
     doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
     todo.appendChild(doneBtn);
 
-    // Botão de "editar"
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-todo");
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     todo.appendChild(editBtn);
 
-    // Botão de "excluir"
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("remove-todo");
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
 
-    // Botão de ver descrição
     const seedesBtn = document.createElement("button");
     seedesBtn.classList.add("see-description");
     seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
     todo.appendChild(seedesBtn);
 
-    // Verificar o prazo da tarefa
-    checkDeadline(deadline, todo);
+    checkDeadline(deadline, todo);  // Verificar o prazo
 
-    // Adicionar a tarefa à lista
     todoList.appendChild(todo);
 
-    saveTasks(); 
+    saveTasks();
 
-    todoInput.value = " "; //O campo de input é limpo
-    todoInput.focus(); //foco no campo de input
+    todoInput.value = ""; // Limpar campo de input
+    taskDateInput.value = ""; // Limpar data
+    todoInput.focus(); // Manter o foco
 };
 
 function saveTasks(){
