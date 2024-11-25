@@ -42,6 +42,9 @@ const saveTodo = (text, deadline) => {
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
 
+    // Adicionar a tarefa à lista
+    todoList.appendChild(todo);
+
     // Mostrar o prazo da tarefa
     const todoDeadline = document.createElement("p");
     todoDeadline.innerText = `Prazo: ${deadline}`;
@@ -50,8 +53,6 @@ const saveTodo = (text, deadline) => {
     // Verificar o prazo da tarefa
     checkDeadline(deadline, todo);
 
-    // Adicionar a tarefa à lista
-    todoList.appendChild(todo);
 };
 
 //edit (em progresso)
