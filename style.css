@@ -43,6 +43,8 @@ li:nth-child(even){
     padding-bottom: 10px;
     border-width: 2px;
     border-color:black;
+    border-radius: 18px;
+    padding-left: 10px;
 }
 .esquerda{
     padding-left: 40px;
@@ -173,4 +175,29 @@ h3{
 }
 #toolbar{
     display: flex;
+}
+#cancel-edit-btn{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+    padding-left: 4px;
+}
+#cancel-edit-btn:hover{
+    background-color: red;
+}
+input#date {    
+    border-radius: 7px;
+    padding: 5px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+}
+input#description {
+    border-radius: 7px;
+    padding: 5px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
 }
