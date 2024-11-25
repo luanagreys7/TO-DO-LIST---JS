@@ -16,6 +16,12 @@ const saveTodo = (text) => { //add task
     todoTitle.innerText = text;
     todo.appendChild(todoTitle);
 
+    //Ver descrição
+    const seedesBtn = document.createElement("button");
+    seedesBtn.classList.add("see-description");
+    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    todo.appendChild(seedesBtn);
+
     //Finish
     const doneBtn = document.createElement("button");
     doneBtn.classList.add("finish-todo");
@@ -33,12 +39,6 @@ const saveTodo = (text) => { //add task
     deleteBtn.classList.add("remove-todo");
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     todo.appendChild(deleteBtn);
-
-    //Ver descrição
-    const seedesBtn = document.createElement("button");
-    seedesBtn.classList.add("see-description");
-    seedesBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
-    todo.appendChild(seedesBtn);
 
     todoList.appendChild(todo);
 };
