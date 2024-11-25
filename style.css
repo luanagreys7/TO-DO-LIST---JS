@@ -153,3 +153,7 @@ h3{
     font: bold;
     color: rgb(52, 23, 11);
 }
+
+.hide {
+    display: none;
+}

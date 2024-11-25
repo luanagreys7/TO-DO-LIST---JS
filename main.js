@@ -120,3 +120,9 @@ document.addEventListener("click", (e) => {
         alert(`Descrição da tarefa: ${parentEl.querySelector("h3").innerText}`);
     }
 });
+
+cancelEditBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    toggleForms();
+})
