@@ -65,8 +65,75 @@ label{
     width: 675px;
     align-content: center;
 }
+button{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+}
 .text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font: bold;
     color: rgb(52, 23, 11);
+}
+.red {
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+}
+.red:hover{
+    background-color: red;
+}
+.see-description{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+}
+.see-description:hover{
+    background-color: rgb(239, 201, 10);
+}
+.finish-todo{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+}
+.finish-todo:hover{
+    background-color: rgb(76, 135, 76);
+}
+.edit-todo{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+}
+.edit-todo:hover{
+    background-color: rgb(241, 118, 10);
+}
+.remove-todo{
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    background-color: rgb(234, 228, 221);
+    border: 2px solid transparent;
+    cursor: pointer;  
+    transition: background-color 0.3s;
+}
+.remove-todo:hover{
+    background-color: red;
 }
